@@ -1,4 +1,6 @@
 # ModernWPF UI Library
+[![Gitter](https://badges.gitter.im/ModernWpf/community.svg)](https://gitter.im/ModernWpf/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 Modern styles and controls for your WPF applications.
 
 ## Features
@@ -62,13 +64,15 @@ Modern styles and controls for your WPF applications.
 
 ![Easily customize colors](docs/images/Nighttime.png "Easily customize colors")
 
+![NumberBox](docs/images/NumberBox.png "NumberBox")
+
 ![ContentDialog](docs/images/ContentDialog.png "ContentDialog")
 
 ![DataGrid](docs/images/DataGrid.png "DataGrid")
 
 ![ItemsRepeater - UniformGridLayout](docs/images/UniformGridLayout.png "ItemsRepeater - UniformGridLayout")
 
-![Custom title bar](docs/images/CustomTitleBar.png "Custom title bar")
+![Custom title bar](docs/images/CustomTitleBar.Dark.png "Custom title bar")
 
 ![Calendar](docs/images/Calendar.png "Calendar")
 

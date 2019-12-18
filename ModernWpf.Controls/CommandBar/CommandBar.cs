@@ -12,6 +12,7 @@ using ModernWpf.Controls.Primitives;
 namespace ModernWpf.Controls
 {
     [ContentProperty(nameof(PrimaryCommands))]
+    [TemplatePart(Name = ToolBarName, Type = typeof(CommandBarToolBar))]
     public class CommandBar : Control
     {
         static CommandBar()
@@ -79,7 +80,10 @@ namespace ModernWpf.Controls
             DependencyProperty.Register(
                 nameof(IsOpen),
                 typeof(bool),
-                typeof(CommandBar));
+                typeof(CommandBar),
+                new FrameworkPropertyMetadata(
+                    false,
+                    FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         public bool IsOpen
         {

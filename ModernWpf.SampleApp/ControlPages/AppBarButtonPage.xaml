@@ -11,19 +11,14 @@
     d:DesignHeight="900"
     Style="{StaticResource ControlPageStyle}">
 
-    <UserControl.Resources>
-        <Style TargetType="sc:ControlExample">
-            <Setter Property="HorizontalContentAlignment" Value="Left" />
-            <Setter Property="VerticalContentAlignment" Value="Top" />
-        </Style>
-    </UserControl.Resources>
-
     <ScrollViewer>
-        <StackPanel Margin="{StaticResource ControlPageContentMargin}">
+        <ui:SimpleStackPanel Style="{StaticResource ControlPageContentPanelStyle}">
             <sc:ControlExample
                 x:Name="Example1"
                 HeaderText="An AppBarButton with a symbol icon.">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel
+                    Orientation="Horizontal"
+                    VerticalAlignment="Top">
                     <!-- App bar button with symbol icon. -->
                     <ui:AppBarButton x:Name="Button1" Label="SymbolIcon" Icon="Like" Click="AppBarButton_Click" />
                     <TextBlock
@@ -39,7 +34,7 @@
                         <ComboBox
                             ui:ControlHelper.Header="LabelPosition"
                             ItemsSource="{Binding Source={x:Type ui:CommandBarLabelPosition}, Converter={StaticResource EnumValuesConverter}}"
-                            SelectedItem="{Binding ElementName=Button1, Path=LabelPosition, Mode=TwoWay}" />
+                            SelectedItem="{Binding ElementName=Button1, Path=LabelPosition}" />
                     </ui:SimpleStackPanel>
                 </sc:ControlExample.Options>
             </sc:ControlExample>
@@ -50,7 +45,7 @@
                     <!-- App bar button with bitmap icon. -->
                     <ui:AppBarButton x:Name="Button2" Label="BitmapIcon" Click="AppBarButton_Click">
                         <ui:AppBarButton.Icon>
-                            <ui:BitmapIcon UriSource="pack://application:,,,/ModernWpf.SampleApp;component/Assets/Slices2.png" />
+                            <ui:BitmapIcon UriSource="/ModernWpf.SampleApp;component/Assets/Slices2.png" />
                         </ui:AppBarButton.Icon>
                     </ui:AppBarButton>
                     <TextBlock
@@ -111,6 +106,6 @@
                     </ScrollViewer>
                 </sc:ControlExample.Example>
             </sc:ControlExample>
-        </StackPanel>
+        </ui:SimpleStackPanel>
     </ScrollViewer>
 </UserControl>

@@ -3,10 +3,23 @@
   <PropertyGroup>
     <TargetFrameworks>netcoreapp3.0;net45</TargetFrameworks>
     <UseWPF>true</UseWPF>
+    <NeutralLanguage>en-US</NeutralLanguage>
     <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);GetDocumentationFile</TargetsForTfmSpecificBuildOutput>
     <NuspecFile>$(MSBuildThisFileDirectory)ModernWpfUI.nuspec</NuspecFile>
     <PackageId>ModernWpfUI</PackageId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Page Remove="Properties\DesignTimeResources.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Properties\DesignTimeResources.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ModernWpf\ModernWpf.csproj" />
@@ -30,6 +43,7 @@
       <NuspecProperties>$(NuspecProperties);config=$(Configuration)</NuspecProperties>
       <NuspecProperties>$(NuspecProperties);version=$(PackageVersion)</NuspecProperties>
       <NuspecProperties>$(NuspecProperties);authors=$(Authors)</NuspecProperties>
+      <NuspecProperties>$(NuspecProperties);tags=$(PackageTags)</NuspecProperties>
       <NuspecProperties>$(NuspecProperties);license=$(PackageLicenseExpression)</NuspecProperties>
       <NuspecProperties>$(NuspecProperties);projectUrl=$(PackageProjectUrl)</NuspecProperties>
     </PropertyGroup>

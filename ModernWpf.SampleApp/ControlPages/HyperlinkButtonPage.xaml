@@ -13,8 +13,10 @@
     Title="HyperlinkButtonPage">
 
     <ScrollViewer>
-        <StackPanel Margin="{StaticResource ControlPageContentMargin}">
-            <sc:ControlExample HeaderText="A hyperlink button that navigates to a URI.">
+        <ui:SimpleStackPanel Style="{StaticResource ControlPageContentPanelStyle}">
+            <sc:ControlExample
+                HeaderText="A hyperlink button that navigates to a URI."
+                VerticalContentAlignment="Center">
                 <ui:HyperlinkButton
                     x:Name="Control1"
                     Content="Microsoft home page"
@@ -24,7 +26,7 @@
                     <ui:SimpleStackPanel Style="{StaticResource OptionsPanelStyle}">
                         <CheckBox
                             Content="IsEnabled"
-                            IsChecked="{Binding ElementName=Control1, Path=IsEnabled, Mode=TwoWay}" />
+                            IsChecked="{Binding ElementName=Control1, Path=IsEnabled}" />
                     </ui:SimpleStackPanel>
                 </sc:ControlExample.Options>
             </sc:ControlExample>
@@ -35,6 +37,6 @@
                     Content="Go to ListBox"
                     Click="GoToHyperlinkButton_Click" />
             </sc:ControlExample>
-        </StackPanel>
+        </ui:SimpleStackPanel>
     </ScrollViewer>
 </Page>

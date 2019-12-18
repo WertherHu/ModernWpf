@@ -30,7 +30,7 @@
         </VisualStateManager.VisualStateGroups>
 
         <ScrollViewer>
-            <StackPanel Margin="{StaticResource ControlPageContentMargin}">
+            <ui:SimpleStackPanel Style="{StaticResource ControlPageContentPanelStyle}">
                 <sc:ControlExample
                     HeaderText="A simple expander."
                     HorizontalContentAlignment="Stretch"
@@ -51,16 +51,14 @@
                     </DockPanel>
 
                     <sc:ControlExample.Options>
-                        <ui:SimpleStackPanel>
-                            <ui:RadioButtons
-                                Header="ExpandDirection"
-                                ItemsSource="{Binding Converter={StaticResource EnumValuesConverter}, Source={x:Type ExpandDirection}}"
-                                SelectedItem="{Binding ExpandDirection, ElementName=expander, Mode=TwoWay}"
-                                SelectionChanged="ExpandDirection_SelectionChanged" />
-                        </ui:SimpleStackPanel>
+                        <ui:RadioButtons
+                            Header="ExpandDirection"
+                            ItemsSource="{Binding Converter={StaticResource EnumValuesConverter}, Source={x:Type ExpandDirection}}"
+                            SelectedItem="{Binding ExpandDirection, ElementName=expander}"
+                            SelectionChanged="ExpandDirection_SelectionChanged" />
                     </sc:ControlExample.Options>
                 </sc:ControlExample>
-            </StackPanel>
+            </ui:SimpleStackPanel>
         </ScrollViewer>
     </Grid>
 </UserControl>

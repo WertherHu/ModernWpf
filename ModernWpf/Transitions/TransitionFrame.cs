@@ -14,8 +14,7 @@ using System.Windows.Navigation;
 namespace ModernWpf.Controls
 {
     /// <summary>
-    /// Enables navigation transitions for
-    /// <see cref="T:ModernWpf.Controls.PhoneApplicationPage"/>s.
+    /// Enables navigation transitions for pages.
     /// </summary>
     /// <QualityBand>Preview</QualityBand>
     [TemplatePart(Name = FirstTemplatePartName, Type = typeof(ContentPresenter))]
@@ -133,7 +132,7 @@ namespace ModernWpf.Controls
             : base()
         {
             InheritanceBehavior = InheritanceBehavior.Default;
-            TransitionsEnabled = SystemParameters.ClientAreaAnimation && RenderCapability.Tier > 0;
+            SetCurrentValue(TransitionsEnabledProperty, SystemParameters.ClientAreaAnimation && RenderCapability.Tier > 0);
 
             Navigating += OnNavigating;
             NavigationStopped += OnNavigationStopped;
@@ -238,7 +237,7 @@ namespace ModernWpf.Controls
 
             if (TransitionsEnabled)
             {
-                if (HasDefaultValue(oldElement, TransitionService.NavigationOutTransitionProperty))
+                if (Helper.HasDefaultValue(oldElement, TransitionService.NavigationOutTransitionProperty))
                 {
                     oldElement.SetCurrentValue(TransitionService.NavigationOutTransitionProperty, DefaultNavigationOutTransition);
                 }
@@ -414,7 +413,7 @@ namespace ModernWpf.Controls
 
             if (oldElement != null && newElement != null && TransitionsEnabled)
             {
-                if (HasDefaultValue(newElement, TransitionService.NavigationInTransitionProperty))
+                if (Helper.HasDefaultValue(newElement, TransitionService.NavigationInTransitionProperty))
                 {
                     newElement.SetCurrentValue(TransitionService.NavigationInTransitionProperty, DefaultNavigationInTransition);
                 }
@@ -589,11 +588,6 @@ namespace ModernWpf.Controls
 
                 presenter.IsHitTestVisible = true;
             }
-        }
-
-        private static bool HasDefaultValue(DependencyObject d, DependencyProperty dp)
-        {
-            return DependencyPropertyHelper.GetValueSource(d, dp).BaseValueSource == BaseValueSource.Default;
         }
     }
 }

@@ -22,12 +22,19 @@ namespace ModernWpf
         private static readonly Dictionary<string, ResourceDictionary> _defaultThemeDictionaries = new Dictionary<string, ResourceDictionary>();
 
         private bool _isInitialized;
-        private bool _applicationStarted;
+        private bool _applicationInitialized;
 
         static ThemeManager()
         {
             _actualThemeChangedEventArgs = new RoutedEventArgs(ActualThemeChangedEvent);
             MenuDropAlignmentHelper.EnsureStandardPopupAlignment();
+
+            if (DesignMode.DesignModeEnabled)
+            {
+                _ = GetDefaultThemeDictionary(LightKey);
+                _ = GetDefaultThemeDictionary(DarkKey);
+                _ = GetDefaultThemeDictionary(HighContrastKey);
+            }
         }
 
         private ThemeManager()
@@ -106,7 +113,7 @@ namespace ModernWpf
 
         private void ApplyApplicationTheme()
         {
-            if (_applicationStarted)
+            if (_applicationInitialized)
             {
                 Debug.Assert(ThemeResources.Current != null);
                 ThemeResources.Current.ApplyApplicationTheme(ActualApplicationTheme);
@@ -164,7 +171,7 @@ namespace ModernWpf
 
         private void ApplyAccentColor()
         {
-            if (_applicationStarted)
+            if (_applicationInitialized)
             {
                 UpdateAccentColors();
 
@@ -505,7 +512,7 @@ namespace ModernWpf
                 "SubscribedToInitialized",
                 typeof(bool),
                 typeof(ThemeManager),
-                new PropertyMetadata(default(bool), OnSubscribedToInitializedChanged));
+                new PropertyMetadata(false, OnSubscribedToInitializedChanged));
 
         private static bool GetSubscribedToInitialized(FrameworkElement element)
         {
@@ -653,6 +660,14 @@ namespace ModernWpf
 
         public TypedEventHandler<ThemeManager, object> ActualAccentColorChanged;
 
+        internal static void UpdateThemeBrushes(ResourceDictionary colors)
+        {
+            foreach (var themeDictionary in _defaultThemeDictionaries.Values)
+            {
+                ColorsHelper.UpdateBrushes(themeDictionary, colors);
+            }
+        }
+
         internal static ResourceDictionary GetDefaultThemeDictionary(string key)
         {
             if (!_defaultThemeDictionaries.TryGetValue(key, out ResourceDictionary dictionary))
@@ -717,28 +732,23 @@ namespace ModernWpf
 
             if (Application.Current != null)
             {
-                Application.Current.Startup += OnApplicationStartup;
+                var appResources = Application.Current.Resources;
+                appResources.MergedDictionaries.RemoveAll<IntellisenseResourcesBase>();
+
+                ColorsHelper.Current.SystemThemeChanged += OnSystemThemeChanged;
+                ColorsHelper.Current.AccentColorChanged += OnSystemAccentColorChanged;
+                appResources.MergedDictionaries.Insert(0, ColorsHelper.Current.Colors);
+
+                UpdateActualAccentColor();
+                UpdateActualApplicationTheme();
+
+                _applicationInitialized = true;
+
+                ApplyAccentColor();
+                ApplyApplicationTheme();
             }
 
             _isInitialized = true;
-        }
-
-        private void OnApplicationStartup(object sender, StartupEventArgs e)
-        {
-            var appResources = Application.Current.Resources;
-            appResources.MergedDictionaries.RemoveAll<IntellisenseResourcesBase>();
-
-            ColorsHelper.Current.SystemThemeChanged += OnSystemThemeChanged;
-            ColorsHelper.Current.AccentColorChanged += OnSystemAccentColorChanged;
-            appResources.MergedDictionaries.Insert(0, ColorsHelper.Current.Colors);
-
-            UpdateActualAccentColor();
-            UpdateActualApplicationTheme();
-
-            _applicationStarted = true;
-
-            ApplyAccentColor();
-            ApplyApplicationTheme();
         }
 
         private void OnSystemThemeChanged(object sender, EventArgs e)

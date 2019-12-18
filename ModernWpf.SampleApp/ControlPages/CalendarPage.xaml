@@ -12,7 +12,7 @@
     Style="{StaticResource ControlPageStyle}">
 
     <ScrollViewer>
-        <StackPanel Margin="{StaticResource ControlPageContentMargin}">
+        <ui:SimpleStackPanel Margin="{StaticResource ControlPageContentMargin}">
             <sc:ControlExample HeaderText="A basic calendar.">
                 <Calendar
                     x:Name="calendar"
@@ -21,20 +21,20 @@
                     <ui:SimpleStackPanel Style="{StaticResource OptionsPanelStyle}">
                         <CheckBox
                             Content="IsTodayHighlighted"
-                            IsChecked="{Binding ElementName=calendar, Path=IsTodayHighlighted, Mode=TwoWay}" />
+                            IsChecked="{Binding ElementName=calendar, Path=IsTodayHighlighted}" />
                         <CheckBox
                             Content="IsEnabled"
-                            IsChecked="{Binding ElementName=calendar, Path=IsEnabled, Mode=TwoWay}" />
+                            IsChecked="{Binding ElementName=calendar, Path=IsEnabled}" />
                         <ComboBox
                             ui:ControlHelper.Header="SelectionMode"
                             ItemsSource="{Binding Source={x:Type CalendarSelectionMode}, Converter={StaticResource EnumValuesConverter}}"
-                            SelectedItem="{Binding ElementName=calendar, Path=SelectionMode, Mode=TwoWay}" />
+                            SelectedItem="{Binding ElementName=calendar, Path=SelectionMode}" />
                         <Button
                             Content="Make past dates not selectable"
                             Click="AddDatesInPastToBlackoutDates" />
                     </ui:SimpleStackPanel>
                 </sc:ControlExample.Options>
             </sc:ControlExample>
-        </StackPanel>
+        </ui:SimpleStackPanel>
     </ScrollViewer>
 </UserControl>

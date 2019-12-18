@@ -38,11 +38,13 @@
 		ColumnDefinition,
 		primitives:CornerRadiusFilterConverter,
         ui:CornerRadiusFilterConverter,
+        StaticResource,
 		m:StaticResource,
         ui:StaticResource,
-        local:HamburgerMenuItemStyleSelectorEx,
+        Controls:HamburgerMenuItemStyleSelector,
         ui:AppBarButton,
-        ui:AppBarToggleButton
+        ui:AppBarToggleButton,
+        Binding
 	",
     "SeparateByGroups": false,
     "AttributeIndentation": 0,

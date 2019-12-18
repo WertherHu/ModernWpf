@@ -61,6 +61,17 @@ namespace ModernWpf
                     throw new ArgumentOutOfRangeException(nameof(interestPoint));
             }
         }
+
+        public static bool HasDefaultValue(this DependencyObject d, DependencyProperty dp)
+        {
+            return DependencyPropertyHelper.GetValueSource(d, dp).BaseValueSource == BaseValueSource.Default;
+        }
+
+        // return true if there is a local or style-supplied value for the dp
+        public static bool HasNonDefaultValue(this DependencyObject d, DependencyProperty dp)
+        {
+            return !HasDefaultValue(d, dp);
+        }
     }
 
     internal enum InterestPoint

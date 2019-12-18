@@ -7,13 +7,14 @@
     <authors>$authors$</authors>
     <owners>$authors$</owners>
     <description>Modern styles and controls for your WPF applications.</description>
-    <tags>WPF XAML UI Metro Modern Fluent Theme WinUI</tags>
+    <tags>$tags$</tags>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">$license$</license>
     <projectUrl>$projectUrl$</projectUrl>
     <dependencies>
       <group targetFramework=".NETFramework4.5">
         <dependency id="System.Runtime.WindowsRuntime" version="4.6.0" exclude="Build,Analyzers" />
+        <dependency id="System.ValueTuple" version="4.5.0" exclude="Build,Analyzers" />
       </group>
       <group targetFramework=".NETCoreApp3.0">
         <dependency id="System.Runtime.WindowsRuntime" version="4.6.0" exclude="Build,Analyzers" />

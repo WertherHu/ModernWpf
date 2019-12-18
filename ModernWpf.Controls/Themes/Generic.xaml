@@ -7,12 +7,14 @@
         <ResourceDictionary Source="/ModernWpf.Controls;component/CommandBar/AppBarButton.xaml" />
         <ResourceDictionary Source="/ModernWpf.Controls;component/CommandBar/AppBarToggleButton.xaml" />
         <ResourceDictionary Source="/ModernWpf.Controls;component/CommandBar/AppBarSeparator.xaml" />
+        <ResourceDictionary Source="/ModernWpf.Controls;component/CommandBar/AppBarElementContainer.xaml" />
         <ResourceDictionary Source="/ModernWpf.Controls;component/CommandBar/CommandBar.xaml" />
         <ResourceDictionary Source="/ModernWpf.Controls;component/CommandBarFlyout/CommandBarFlyout.xaml" />
         <ResourceDictionary Source="/ModernWpf.Controls;component/DropDownButton/DropDownButton.xaml" />
         <ResourceDictionary Source="/ModernWpf.Controls;component/Flyout/FlyoutPresenter.xaml" />
         <ResourceDictionary Source="/ModernWpf.Controls;component/HyperlinkButton/HyperlinkButton.xaml" />
         <ResourceDictionary Source="/ModernWpf.Controls;component/MenuFlyout/MenuFlyout.xaml" />
+        <ResourceDictionary Source="/ModernWpf.Controls;component/NumberBox/NumberBox.xaml" />
         <ResourceDictionary Source="/ModernWpf.Controls;component/ProgressRing/ProgressRing.xaml" />
         <ResourceDictionary Source="/ModernWpf.Controls;component/SplitButton/SplitButton.xaml" />
         <ResourceDictionary Source="/ModernWpf.Controls;component/RadioButtons/RadioButtons.xaml" />
