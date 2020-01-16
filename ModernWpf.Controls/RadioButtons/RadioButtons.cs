@@ -416,6 +416,7 @@ namespace ModernWpf.Controls
 
                     if (toggleButton.IsChecked == true)
                     {
+                        m_blockSelecting = false; // WPF-specific fix to ensure IsChecked is honored
                         Select(args.Index);
                     }
                 }
@@ -618,9 +619,8 @@ namespace ModernWpf.Controls
                             {
                                 if (item is Control itemAsControl)
                                 {
-                                    if (itemAsControl.IsEnabled && itemAsControl.IsTabStop && itemAsControl.Focusable)
+                                    if (itemAsControl.Focus())
                                     {
-                                        itemAsControl.Focus();
                                         return true;
                                     }
                                 }

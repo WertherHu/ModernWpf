@@ -3,6 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/ModernWpf.Controls;component/AutoSuggestBox/AutoSuggestBox.xaml" />
         <ResourceDictionary Source="/ModernWpf.Controls;component/ContentDialog/ContentDialog.xaml" />
         <ResourceDictionary Source="/ModernWpf.Controls;component/CommandBar/AppBarButton.xaml" />
         <ResourceDictionary Source="/ModernWpf.Controls;component/CommandBar/AppBarToggleButton.xaml" />
@@ -15,7 +16,9 @@
         <ResourceDictionary Source="/ModernWpf.Controls;component/HyperlinkButton/HyperlinkButton.xaml" />
         <ResourceDictionary Source="/ModernWpf.Controls;component/MenuFlyout/MenuFlyout.xaml" />
         <ResourceDictionary Source="/ModernWpf.Controls;component/NumberBox/NumberBox.xaml" />
+        <ResourceDictionary Source="/ModernWpf.Controls;component/PersonPicture/PersonPicture.xaml" />
         <ResourceDictionary Source="/ModernWpf.Controls;component/ProgressRing/ProgressRing.xaml" />
+        <ResourceDictionary Source="/ModernWpf.Controls;component/RatingControl/RatingControl.xaml" />
         <ResourceDictionary Source="/ModernWpf.Controls;component/SplitButton/SplitButton.xaml" />
         <ResourceDictionary Source="/ModernWpf.Controls;component/RadioButtons/RadioButtons.xaml" />
         <ResourceDictionary Source="/ModernWpf.Controls;component/RadioMenuItem/RadioMenuItem.xaml" />

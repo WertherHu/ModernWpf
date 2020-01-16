@@ -1,6 +1,8 @@
-﻿using System.Linq;
+﻿using ModernWpf.Controls.Primitives;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Documents;
 using System.Windows.Input;
 
@@ -12,6 +14,8 @@ namespace ModernWpf.Controls
     public class TextContextMenu : ContextMenu
     {
         private static readonly CommandBinding _selectAllBinding;
+        private static readonly CommandBinding _undoBinding;
+        private static readonly CommandBinding _redoBinding;
 
         private readonly MenuItem _proofingMenuItem;
 
@@ -21,6 +25,12 @@ namespace ModernWpf.Controls
 
             _selectAllBinding = new CommandBinding(ApplicationCommands.SelectAll);
             _selectAllBinding.PreviewCanExecute += OnSelectAllPreviewCanExecute;
+
+            _undoBinding = new CommandBinding(ApplicationCommands.Undo);
+            _undoBinding.PreviewCanExecute += OnUndoRedoPreviewCanExecute;
+
+            _redoBinding = new CommandBinding(ApplicationCommands.Redo);
+            _redoBinding.PreviewCanExecute += OnUndoRedoPreviewCanExecute;
         }
 
         /// <summary>
@@ -28,10 +38,7 @@ namespace ModernWpf.Controls
         /// </summary>
         public TextContextMenu()
         {
-            _proofingMenuItem = new MenuItem
-            {
-                Header = Strings.Resources.ProofingMenuItemLabel
-            };
+            _proofingMenuItem = new MenuItem();
             Items.Add(_proofingMenuItem);
             Items.Add(new MenuItem
             {
@@ -89,11 +96,15 @@ namespace ModernWpf.Controls
             if ((bool)e.NewValue)
             {
                 textControl.CommandBindings.Add(_selectAllBinding);
+                textControl.CommandBindings.Add(_undoBinding);
+                textControl.CommandBindings.Add(_redoBinding);
                 textControl.ContextMenuOpening += OnContextMenuOpening;
             }
             else
             {
                 textControl.CommandBindings.Remove(_selectAllBinding);
+                textControl.CommandBindings.Remove(_undoBinding);
+                textControl.CommandBindings.Remove(_redoBinding);
                 textControl.ContextMenuOpening -= OnContextMenuOpening;
             }
         }
@@ -139,12 +150,33 @@ namespace ModernWpf.Controls
             }
         }
 
+        private static void OnUndoRedoPreviewCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (sender is TextBoxBase textBoxBase && textBoxBase.IsReadOnly)
+            {
+                e.CanExecute = false;
+                e.Handled = true;
+            }
+        }
+
         private static void OnContextMenuOpening(object sender, ContextMenuEventArgs e)
         {
             var textControl = (Control)sender;
             if (textControl.ContextMenu is TextContextMenu contextMenu)
             {
-                contextMenu.UpdateItems(textControl);
+                Control target;
+                if (textControl is PasswordBox passwordBox &&
+                    PasswordBoxHelper.GetPasswordRevealMode(passwordBox) == PasswordRevealMode.Visible &&
+                    e.Source is TextBox)
+                {
+                    target = (Control)e.Source;
+                }
+                else
+                {
+                    target = textControl;
+                }
+
+                contextMenu.UpdateItems(target);
 
                 bool hasVisibleItems = contextMenu.Items.OfType<MenuItem>().Any(mi => mi.Visibility == Visibility.Visible);
                 if (!hasVisibleItems)
@@ -156,6 +188,7 @@ namespace ModernWpf.Controls
 
         private void UpdateProofingMenuItem(Control target)
         {
+            _proofingMenuItem.Header = Strings.ProofingMenuItemLabel;
             _proofingMenuItem.Items.Clear();
 
             SpellingError spellingError = null;
@@ -190,7 +223,7 @@ namespace ModernWpf.Controls
 
                 _proofingMenuItem.Items.Add(new MenuItem
                 {
-                    Header = "Ignore",
+                    Header = Strings.IgnoreMenuItemLabel,
                     Command = EditingCommands.IgnoreSpellingError,
                     CommandTarget = target
                 });
@@ -211,6 +244,31 @@ namespace ModernWpf.Controls
             {
                 if (menuItem.Command is RoutedUICommand command)
                 {
+                    if (command == ApplicationCommands.Cut)
+                    {
+                        menuItem.Header = Strings.TextCommandLabelCut;
+                    }
+                    else if (command == ApplicationCommands.Copy)
+                    {
+                        menuItem.Header = Strings.TextCommandLabelCopy;
+                    }
+                    else if (command == ApplicationCommands.Paste)
+                    {
+                        menuItem.Header = Strings.TextCommandLabelPaste;
+                    }
+                    else if (command == ApplicationCommands.Undo)
+                    {
+                        menuItem.Header = Strings.TextCommandLabelUndo;
+                    }
+                    else if (command == ApplicationCommands.Redo)
+                    {
+                        menuItem.Header = Strings.TextCommandLabelRedo;
+                    }
+                    else if (command == ApplicationCommands.SelectAll)
+                    {
+                        menuItem.Header = Strings.TextCommandLabelSelectAll;
+                    }
+
                     menuItem.CommandTarget = target;
                     menuItem.Visibility = command.CanExecute(null, target) ? Visibility.Visible : Visibility.Collapsed;
                 }

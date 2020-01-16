@@ -46,8 +46,8 @@ namespace ModernWpf.Controls
 
         public ToggleSwitch()
         {
-            SetCurrentValue(OffContentProperty, Strings.Resources.ToggleSwitchOff);
-            SetCurrentValue(OnContentProperty, Strings.Resources.ToggleSwitchOn);
+            SetCurrentValue(OffContentProperty, Strings.ToggleSwitchOff);
+            SetCurrentValue(OnContentProperty, Strings.ToggleSwitchOn);
 
             IsEnabledChanged += OnIsEnabledChanged;
         }
@@ -366,6 +366,8 @@ namespace ModernWpf.Controls
 
         private void UpdateVisualStates(bool useTransitions)
         {
+            useTransitions &= SharedHelpers.IsAnimationsEnabled;
+
             string stateName;
 
             if (!IsEnabled)

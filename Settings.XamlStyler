@@ -44,7 +44,13 @@
         Controls:HamburgerMenuItemStyleSelector,
         ui:AppBarButton,
         ui:AppBarToggleButton,
-        Binding
+        Binding,
+        local:RatingItemFontInfo,
+        animation:CubicBezierEase,
+        CommandBinding,
+        ui:VisualStateGroupListener,
+        ImageBrush,
+        ui:BitmapIcon
 	",
     "SeparateByGroups": false,
     "AttributeIndentation": 0,

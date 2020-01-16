@@ -8,13 +8,14 @@ using System.Windows;
 using System.Windows.Automation.Peers;
 using System.Windows.Controls;
 using System.Windows.Markup;
+using System.Windows.Media;
 using System.Windows.Threading;
 using ModernWpf.Automation.Peers;
 
 namespace ModernWpf.Controls
 {
     [ContentProperty(nameof(ItemTemplate))]
-    public class ItemsRepeater : ItemsRepeaterPanel
+    public class ItemsRepeater : Panel
     {
         internal static readonly Point ClearedElementsArrangePosition = new Point(-10000.0, -10000.0);
         // A convention we use in the ItemsRepeater codebase for an invalid Rect value.
@@ -324,8 +325,14 @@ namespace ModernWpf.Controls
 
         internal int GetElementIndexImpl(UIElement element)
         {
-            var virtInfo = TryGetVirtualizationInfo(element);
-            return ViewManager.GetElementIndex(virtInfo);
+            // Verify that element is actually a child of this ItemsRepeater
+            var parent = VisualTreeHelper.GetParent(element);
+            if (parent == this)
+            {
+                var virtInfo = TryGetVirtualizationInfo(element);
+                return ViewManager.GetElementIndex(virtInfo);
+            }
+            return -1;
         }
 
         internal UIElement GetElementFromIndexImpl(int index)
@@ -415,14 +422,17 @@ namespace ModernWpf.Controls
 
             if (property == ItemsSourceProperty)
             {
-                var newValue = args.NewValue;
-                var newDataSource = newValue as ItemsSourceView;
-                if (newValue != null && newDataSource == null)
+                if (args.NewValue != args.OldValue)
                 {
-                    newDataSource = new InspectingDataSource(newValue);
-                }
+                    var newValue = args.NewValue;
+                    var newDataSource = newValue as ItemsSourceView;
+                    if (newValue != null && newDataSource == null)
+                    {
+                        newDataSource = new InspectingDataSource(newValue);
+                    }
 
-                OnDataSourcePropertyChanged(ItemsSourceView, newDataSource);
+                    OnDataSourcePropertyChanged(ItemsSourceView, newDataSource);
+                }
             }
             else if (property == ItemTemplateProperty)
             {
@@ -527,6 +537,7 @@ namespace ModernWpf.Controls
             // layout pass during which we will hookup new scrollers.
             if (_loadedCounter > _unloadedCounter)
             {
+                _loadedCounter = _unloadedCounter; // WPF-specific optimization
                 InvalidateMeasure();
                 m_viewportManager.ResetScrollers();
             }
@@ -813,7 +824,7 @@ namespace ModernWpf.Controls
             if (m_lastChildDesiredSizeChangedCounter == 0)
             {
                 m_lastChildDesiredSizeChangedCounter = m_childDesiredSizeChangedCounter;
-                Dispatcher.BeginInvoke(CheckForNewChildDesiredSizeChanges, DispatcherPriority.Background);
+                Dispatcher.BeginInvoke(CheckForNewChildDesiredSizeChanges);
             }
         }
 

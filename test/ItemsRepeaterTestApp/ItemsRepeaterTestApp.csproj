@@ -19,4 +19,9 @@
     <ProjectReference Include="..\..\ModernWpf\ModernWpf.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Samples\SelectionSample\" />
+    <Folder Include="Utils\" />
+  </ItemGroup>
+
 </Project>

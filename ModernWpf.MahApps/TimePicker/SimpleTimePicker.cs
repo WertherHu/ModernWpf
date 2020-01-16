@@ -1,6 +1,7 @@
 ﻿using MahApps.Metro.Controls;
 using ModernWpf.Controls.Primitives;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
@@ -21,10 +22,10 @@ namespace ModernWpf.MahApps.Controls
         private const string ElementMinutePicker = "PART_MinutePicker";
         private const string ElementSecondPicker = "PART_SecondPicker";
 
-        private Selector _ampmSwitcher;
-        private Selector _hourInput;
-        private Selector _minuteInput;
-        private Selector _secondInput;
+        private DateTimeComponentSelector _ampmSwitcher;
+        private DateTimeComponentSelector _hourInput;
+        private DateTimeComponentSelector _minuteInput;
+        private DateTimeComponentSelector _secondInput;
 
         private TextBlock _hourTextBlock;
         private TextBlock _minuteTextBlock;
@@ -111,15 +112,77 @@ namespace ModernWpf.MahApps.Controls
 
         #endregion
 
+        #region HourPlaceholderText
+
+        public static readonly DependencyProperty HourPlaceholderTextProperty =
+            DependencyProperty.Register(
+                nameof(HourPlaceholderText),
+                typeof(string),
+                typeof(SimpleTimePicker),
+                new PropertyMetadata(string.Empty, OnPlaceholderTextChanged));
+
+        public string HourPlaceholderText
+        {
+            get => (string)GetValue(HourPlaceholderTextProperty);
+            set => SetValue(HourPlaceholderTextProperty, value);
+        }
+
+        #endregion
+
+        #region MinutePlaceholderText
+
+        public static readonly DependencyProperty MinutePlaceholderTextProperty =
+            DependencyProperty.Register(
+                nameof(MinutePlaceholderText),
+                typeof(string),
+                typeof(SimpleTimePicker),
+                new PropertyMetadata(string.Empty, OnPlaceholderTextChanged));
+
+        public string MinutePlaceholderText
+        {
+            get => (string)GetValue(MinutePlaceholderTextProperty);
+            set => SetValue(MinutePlaceholderTextProperty, value);
+        }
+
+        #endregion
+
+        #region SecondPlaceholderText
+
+        public static readonly DependencyProperty SecondPlaceholderTextProperty =
+            DependencyProperty.Register(
+                nameof(SecondPlaceholderText),
+                typeof(string),
+                typeof(SimpleTimePicker),
+                new PropertyMetadata(string.Empty, OnPlaceholderTextChanged));
+
+        public string SecondPlaceholderText
+        {
+            get => (string)GetValue(SecondPlaceholderTextProperty);
+            set => SetValue(SecondPlaceholderTextProperty, value);
+        }
+
+        #endregion
+
+        private IEnumerable<DateTimeComponentSelector> Selectors
+        {
+            get
+            {
+                yield return _hourInput;
+                yield return _minuteInput;
+                yield return _secondInput;
+                yield return _ampmSwitcher;
+            }
+        }
+
         /// <summary>
         /// Called when the Template's tree has been generated.
         /// </summary>
         public override void OnApplyTemplate()
         {
-            _hourInput = GetTemplateChild(ElementHourPicker) as Selector;
-            _minuteInput = GetTemplateChild(ElementMinutePicker) as Selector;
-            _secondInput = GetTemplateChild(ElementSecondPicker) as Selector;
-            _ampmSwitcher = GetTemplateChild(ElementAmPmSwitcher) as Selector;
+            _hourInput = GetTemplateChild(ElementHourPicker) as DateTimeComponentSelector;
+            _minuteInput = GetTemplateChild(ElementMinutePicker) as DateTimeComponentSelector;
+            _secondInput = GetTemplateChild(ElementSecondPicker) as DateTimeComponentSelector;
+            _ampmSwitcher = GetTemplateChild(ElementAmPmSwitcher) as DateTimeComponentSelector;
             _hourTextBlock = GetTemplateChild("HourTextBlock") as TextBlock;
             _minuteTextBlock = GetTemplateChild("MinuteTextBlock") as TextBlock;
             _secondTextBlock = GetTemplateChild("SecondTextBlock") as TextBlock;
@@ -130,21 +193,6 @@ namespace ModernWpf.MahApps.Controls
             base.OnApplyTemplate();
 
             UpdateTextBlocks();
-        }
-
-        private void OnAcceptButtonClick(object sender, RoutedEventArgs e)
-        {
-            foreach (var selector in new[] { _hourInput, _minuteInput, _secondInput, _ampmSwitcher }.OfType<DateTimeComponentSelector>())
-            {
-                selector.RaiseDeferredSelectionChanged();
-            }
-
-            ClosePopup();
-        }
-
-        private void OnDismissButtonClick(object sender, RoutedEventArgs e)
-        {
-            ClosePopup();
         }
 
         protected override void OnIsKeyboardFocusWithinChanged(DependencyPropertyChangedEventArgs e)
@@ -162,6 +210,7 @@ namespace ModernWpf.MahApps.Controls
             if (Popup != null)
             {
                 Popup.Opened += OnPopupOpened;
+                Popup.Closed += OnPopupClosed;
             }
 
             if (_acceptButton != null)
@@ -182,6 +231,7 @@ namespace ModernWpf.MahApps.Controls
             if (Popup != null)
             {
                 Popup.Opened -= OnPopupOpened;
+                Popup.Closed -= OnPopupClosed;
             }
 
             if (_acceptButton != null)
@@ -192,6 +242,11 @@ namespace ModernWpf.MahApps.Controls
             if (_dismissButton != null)
             {
                 _dismissButton.Click -= OnDismissButtonClick; ;
+            }
+
+            foreach (var picker in Selectors)
+            {
+                picker.CancelFocusSelectedItem();
             }
         }
 
@@ -218,6 +273,11 @@ namespace ModernWpf.MahApps.Controls
             base.OnSelectedTimeChanged(e);
 
             UpdateTextBlocks();
+        }
+
+        private static void OnPlaceholderTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((SimpleTimePicker)d).UpdateTextBlocks();
         }
 
         private void SetHourPartValues(TimeSpan timeOfDay)
@@ -261,21 +321,21 @@ namespace ModernWpf.MahApps.Controls
             {
                 _hourTextBlock.Text = selectedTime.HasValue ?
                     selectedTime.Value.ToString(IsMilitaryTime ? "%h" : "%H", SpecificCultureInfo) :
-                    Strings.Resources.TimePickerHour;
+                    HourPlaceholderText.DefaultIfNullOrEmpty(Strings.TimePickerHour);
             }
 
             if (_minuteTextBlock != null)
             {
                 _minuteTextBlock.Text = selectedTime.HasValue ?
                     selectedTime.Value.ToString("mm", SpecificCultureInfo) :
-                    Strings.Resources.TimePickerMinute;
+                    MinutePlaceholderText.DefaultIfNullOrEmpty(Strings.TimePickerMinute);
             }
 
             if (_secondTextBlock != null)
             {
                 _secondTextBlock.Text = selectedTime.HasValue ?
                     selectedTime.Value.ToString("ss", SpecificCultureInfo) :
-                    Strings.Resources.TimePickerSecond;
+                    SecondPlaceholderText.DefaultIfNullOrEmpty(Strings.TimePickerSecond);
             }
 
             if (_periodTextBlock != null)
@@ -289,6 +349,22 @@ namespace ModernWpf.MahApps.Controls
         private void OnPopupOpened(object sender, EventArgs e)
         {
             SetHourPartValues(SelectedDateTime.GetValueOrDefault().TimeOfDay);
+
+            foreach (var picker in Selectors)
+            {
+                picker.CancelFocusSelectedItem();
+            }
+
+            var firstVisiblePicker = Selectors.FirstOrDefault(s => s.Visibility == Visibility.Visible);
+            firstVisiblePicker?.FocusSelectedItem();
+        }
+
+        private void OnPopupClosed(object sender, EventArgs e)
+        {
+            foreach (var picker in Selectors)
+            {
+                picker.CancelFocusSelectedItem();
+            }
         }
 
         private void ClosePopup()
@@ -298,6 +374,21 @@ namespace ModernWpf.MahApps.Controls
             {
                 Popup.IsOpen = false;
             }
+        }
+
+        private void OnAcceptButtonClick(object sender, RoutedEventArgs e)
+        {
+            foreach (var selector in Selectors)
+            {
+                selector.RaiseDeferredSelectionChanged();
+            }
+
+            ClosePopup();
+        }
+
+        private void OnDismissButtonClick(object sender, RoutedEventArgs e)
+        {
+            ClosePopup();
         }
     }
 }

@@ -15,6 +15,9 @@ namespace ModernWpf.Controls
             CommandProperty.OverrideMetadata(typeof(AppBarButton),
                 new FrameworkPropertyMetadata(OnCommandPropertyChanged));
 
+            ToolTipProperty.OverrideMetadata(typeof(AppBarButton),
+                new FrameworkPropertyMetadata { CoerceValueCallback = AppBarElementProperties.CoerceToolTip });
+
             ToolBar.OverflowModeProperty.OverrideMetadata(typeof(AppBarButton),
                 new FrameworkPropertyMetadata(OnOverflowModePropertyChanged));
 
@@ -59,7 +62,7 @@ namespace ModernWpf.Controls
 
         private void OnFlyoutChanged()
         {
-            //UpdateHasFlyout();
+            UpdateVisualState(true);
         }
 
         #endregion
@@ -215,31 +218,6 @@ namespace ModernWpf.Controls
 
         #endregion
 
-        //#region HasFlyout
-
-        //private static readonly DependencyPropertyKey HasFlyoutPropertyKey =
-        //    DependencyProperty.RegisterReadOnly(
-        //        nameof(HasFlyout),
-        //        typeof(bool),
-        //        typeof(AppBarButton),
-        //        new PropertyMetadata(false));
-
-        //public static readonly DependencyProperty HasFlyoutProperty =
-        //    HasFlyoutPropertyKey.DependencyProperty;
-
-        //public bool HasFlyout
-        //{
-        //    get => (bool)GetValue(HasFlyoutProperty);
-        //    private set => SetValue(HasFlyoutPropertyKey, value);
-        //}
-
-        //private void UpdateHasFlyout()
-        //{
-        //    HasFlyout = Flyout != null;
-        //}
-
-        //#endregion
-
         #region InputGestureText
 
         public static readonly DependencyProperty InputGestureTextProperty =
@@ -265,6 +243,12 @@ namespace ModernWpf.Controls
 
         #endregion
 
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            UpdateVisualState(false);
+        }
+
         protected override void OnVisualParentChanged(DependencyObject oldParent)
         {
             base.OnVisualParentChanged(oldParent);
@@ -279,6 +263,7 @@ namespace ModernWpf.Controls
             if (e.Property == ToolBar.IsOverflowItemProperty)
             {
                 AppBarElementProperties.UpdateIsInOverflow(this);
+                UpdateVisualState(true);
             }
         }
 
@@ -297,6 +282,12 @@ namespace ModernWpf.Controls
         private static void OnDefaultLabelPositionPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ((AppBarButton)d).UpdateApplicationViewState();
+        }
+
+        private void UpdateVisualState(bool useTransitions)
+        {
+            string stateName = Flyout != null && !ToolBar.GetIsOverflowItem(this) ? "HasFlyout" : "NoFlyout";
+            VisualStateManager.GoToState(this, stateName, useTransitions);
         }
     }
 }

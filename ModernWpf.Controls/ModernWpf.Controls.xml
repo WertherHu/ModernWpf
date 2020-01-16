@@ -21,6 +21,22 @@
     <member name="M:ModernWpf.Automation.Peers.DropDownButtonAutomationPeer.Expand">
       <summary>Displays the control's drop down menu.</summary>
     </member>
+    <member name="T:ModernWpf.Automation.Peers.HyperlinkButtonAutomationPeer">
+      <summary>Exposes HyperlinkButton types to Microsoft UI Automation.</summary>
+    </member>
+    <member name="M:ModernWpf.Automation.Peers.HyperlinkButtonAutomationPeer.#ctor(ModernWpf.Controls.HyperlinkButton)">
+      <summary>Initializes a new instance of the HyperlinkButtonAutomationPeer class.</summary>
+      <param name="owner">The owner element to create for.</param>
+    </member>
+    <member name="M:ModernWpf.Automation.Peers.HyperlinkButtonAutomationPeer.Invoke">
+      <summary>Sends a request to click the hyperlink button associated with the automation peer.</summary>
+    </member>
+    <member name="T:ModernWpf.Automation.Peers.PersonPictureAutomationPeer">
+      <summary>Exposes <see cref="ModernWpf.Controls.PersonPicture?text=PersonPicture" /> types to Microsoft UI Automation.</summary>
+    </member>
+    <member name="T:ModernWpf.Automation.Peers.RatingControlAutomationPeer">
+      <summary>Exposes <see cref="ModernWpf.Controls.RatingControl?text=RatingControl" /> types to Microsoft UI Automation.</summary>
+    </member>
     <member name="T:ModernWpf.Automation.Peers.SplitButtonAutomationPeer">
       <summary>Exposes SplitButton types to Microsoft UI Automation.</summary>
     </member>
@@ -129,6 +145,39 @@
       <summary>Identifies the Label dependency property.</summary>
       <returns>The identifier for the Label dependency property.</returns>
     </member>
+    <member name="T:ModernWpf.Controls.AppBarElementContainer">
+      <summary>Represents a container that allows an element that doesn't implement ICommandBarElement to be displayed in a command bar.</summary>
+    </member>
+    <member name="M:ModernWpf.Controls.AppBarElementContainer.#ctor">
+      <summary>Initializes a new instance of the AppBarElementContainer class.</summary>
+    </member>
+    <member name="P:ModernWpf.Controls.AppBarElementContainer.DynamicOverflowOrder">
+      <summary>Gets or sets the order in which this item is moved to the CommandBar overflow menu.</summary>
+      <returns>The order in which this item is moved to the overflow menu relative to other items.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.AppBarElementContainer.DynamicOverflowOrderProperty">
+      <summary>Identifies the DynamicOverflowOrder dependency property.</summary>
+      <returns>The identifier for the DynamicOverflowOrder dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.AppBarElementContainer.IsCompact">
+      <summary>Gets or sets a value that indicates whether the element is shown in its compact state.</summary>
+      <returns>**true** if the element is shown in its compact state; otherwise, **false**. The default is **false**.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.AppBarElementContainer.IsCompactProperty">
+      <summary>Identifies the IsCompact dependency property.</summary>
+      <returns>The identifier for the IsCompact dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.AppBarElementContainer.IsInOverflow">
+      <summary>Gets a value that indicates whether this item is in the overflow menu.</summary>
+      <returns>**true** if this item is in the overflow menu; otherwise, **false**.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.AppBarElementContainer.IsInOverflowProperty">
+      <summary>Identifies the IsInOverflow dependency property.</summary>
+      <returns>The identifier for the IsInOverflow dependency property.</returns>
+    </member>
+    <member name="T:ModernWpf.Controls.AppBarSeparator">
+      <summary>Represents a line that separates items in an AppBar or CommandBar.</summary>
+    </member>
     <member name="M:ModernWpf.Controls.AppBarSeparator.#ctor">
       <summary>Initializes a new instance of the AppBarSeparator class.</summary>
     </member>
@@ -193,6 +242,155 @@
     <member name="F:ModernWpf.Controls.AppBarToggleButton.LabelProperty">
       <summary>Identifies the Label dependency property.</summary>
       <returns>The identifier for the Label dependency property.</returns>
+    </member>
+    <member name="T:ModernWpf.Controls.AutoSuggestBox">
+      <summary>Represents a text control that makes suggestions to users as they enter text using a keyboard or pen (using ink and handwriting recognition). The app is notified when text has been changed by the user and is responsible for providing relevant suggestions for this control to display.</summary>
+    </member>
+    <member name="M:ModernWpf.Controls.AutoSuggestBox.#ctor">
+      <summary>Initializes a new instance of the AutoSuggestBox class.</summary>
+    </member>
+    <member name="P:ModernWpf.Controls.AutoSuggestBox.Description">
+      <summary>Gets or sets content that is shown below the control. The content should provide guidance about the input expected by the control.</summary>
+      <returns>The content to be displayed below the control. The default is **null**.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.AutoSuggestBox.DescriptionProperty">
+      <summary>Identifies the Description dependency property.</summary>
+      <returns>The identifier for the Description dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.AutoSuggestBox.Header">
+      <summary>Gets or sets the header object for the text box portion of this control.</summary>
+      <returns>The header object for the text box portion of this control.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.AutoSuggestBox.HeaderProperty">
+      <summary>Identifies the Header dependency property.</summary>
+      <returns>The identifier for the Header dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.AutoSuggestBox.IsSuggestionListOpen">
+      <summary>Gets or sets a Boolean value indicating whether the drop-down portion of the AutoSuggestBox is open.</summary>
+      <returns>A Boolean value indicating whether the drop-down portion of the AutoSuggestBox is open.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.AutoSuggestBox.IsSuggestionListOpenProperty">
+      <summary>Identifies the IsSuggestionListOpen dependency property.</summary>
+      <returns>Identifier for the IsSuggestionListOpen dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.AutoSuggestBox.MaxSuggestionListHeight">
+      <summary>Gets or set the maximum height for the drop-down portion of the AutoSuggestBox control.</summary>
+      <returns>The maximum height for the drop-down portion of the AutoSuggestBox control.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.AutoSuggestBox.MaxSuggestionListHeightProperty">
+      <summary>Identifies the MaxSuggestionListHeight dependency property.</summary>
+      <returns>Identifier for the MaxSuggestionListHeight dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.AutoSuggestBox.PlaceholderText">
+      <summary>Gets or sets the placeholder text to be displayed in the control.</summary>
+      <returns>The placeholder text to be displayed in the control. The default is an empty string.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.AutoSuggestBox.PlaceholderTextProperty">
+      <summary>Identifies the PlaceholderText dependency property.</summary>
+      <returns>The identifier for the PlaceholderText dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.AutoSuggestBox.QueryIcon">
+      <summary>Gets or sets the graphic content of the button that is clicked to initiate a query.</summary>
+      <returns>The graphic content of the button that is clicked to initiate a query, if present; otherwise, **null**. The default is **null**.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.AutoSuggestBox.QueryIconProperty">
+      <summary>Identifies the QueryIcon dependency property.</summary>
+      <returns>The identifier for the QueryIcon dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.AutoSuggestBox.Text">
+      <summary>Gets or sets the text that is shown in the control.</summary>
+      <returns>The text that is shown in the control.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.AutoSuggestBox.TextBoxStyle">
+      <summary>Gets or sets the style of the auto-suggest text box.</summary>
+      <returns>The style of the auto-suggest text box.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.AutoSuggestBox.TextBoxStyleProperty">
+      <summary>Identifies the TextBoxStyle dependency property.</summary>
+      <returns>Identifier for the TextBoxStyle dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.AutoSuggestBox.TextMemberPath">
+      <summary>Gets or sets the property path that is used to get the value for display in the text box portion of the AutoSuggestBox control, when an item is selected.</summary>
+      <returns>The property path that is used to get the value for display in the text box portion of the AutoSuggestBox control, when an item is selected.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.AutoSuggestBox.TextMemberPathProperty">
+      <summary>Identifies the TextMemberPath dependency property.</summary>
+      <returns>Identifier for the TextMemberPath dependency property.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.AutoSuggestBox.TextProperty">
+      <summary>Identifies the PlaceholderText dependency property.</summary>
+      <returns>The identifier for the PlaceholderText dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.AutoSuggestBox.UpdateTextOnSelect">
+      <summary>Used in conjunction with TextMemberPath, gets or sets a value indicating whether items in the view will trigger an update of the editable text part of the AutoSuggestBox when clicked.</summary>
+      <returns>A value indicating whether items in the view will trigger an update of the editable text part of the AutoSuggestBox when clicked.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.AutoSuggestBox.UpdateTextOnSelectProperty">
+      <summary>Identifies the UpdateTextOnSelect dependency property.</summary>
+      <returns>Identifier for the UpdateTextOnSelect dependency property.</returns>
+    </member>
+    <member name="E:ModernWpf.Controls.AutoSuggestBox.QuerySubmitted">
+      <summary>Occurs when the user submits a search query.</summary>
+    </member>
+    <member name="E:ModernWpf.Controls.AutoSuggestBox.SuggestionChosen">
+      <summary>Raised before the text content of the editable control component is updated.</summary>
+    </member>
+    <member name="E:ModernWpf.Controls.AutoSuggestBox.TextChanged">
+      <summary>Raised after the text content of the editable control component is updated.</summary>
+    </member>
+    <member name="T:ModernWpf.Controls.AutoSuggestBoxQuerySubmittedEventArgs">
+      <summary>Provides event data for the AutoSuggestBox.QuerySubmitted event.</summary>
+    </member>
+    <member name="M:ModernWpf.Controls.AutoSuggestBoxQuerySubmittedEventArgs.#ctor">
+      <summary>Initializes a new instance of the AutoSuggestBoxQuerySubmittedEventArgs class.</summary>
+    </member>
+    <member name="P:ModernWpf.Controls.AutoSuggestBoxQuerySubmittedEventArgs.ChosenSuggestion">
+      <summary>Gets the suggested result that the user chose.</summary>
+      <returns>The suggested result that the user chose.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.AutoSuggestBoxQuerySubmittedEventArgs.QueryText">
+      <summary>Gets the query text of the current search.</summary>
+      <returns>The query text of the current search.</returns>
+    </member>
+    <member name="T:ModernWpf.Controls.AutoSuggestBoxSuggestionChosenEventArgs">
+      <summary>Provides data for the SuggestionChosen event.</summary>
+    </member>
+    <member name="M:ModernWpf.Controls.AutoSuggestBoxSuggestionChosenEventArgs.#ctor">
+      <summary>Initializes a new instance of the AutoSuggestBoxSuggestionChosenEventArgs class.</summary>
+    </member>
+    <member name="P:ModernWpf.Controls.AutoSuggestBoxSuggestionChosenEventArgs.SelectedItem">
+      <summary>Gets a reference to the selected item.</summary>
+      <returns>A reference to the selected item.</returns>
+    </member>
+    <member name="T:ModernWpf.Controls.AutoSuggestBoxTextChangedEventArgs">
+      <summary>Provides data for the TextChanged event.</summary>
+    </member>
+    <member name="M:ModernWpf.Controls.AutoSuggestBoxTextChangedEventArgs.#ctor">
+      <summary>Initializes a new instance of the AutoSuggestBoxTextChangedEventArgs class.</summary>
+    </member>
+    <member name="P:ModernWpf.Controls.AutoSuggestBoxTextChangedEventArgs.Reason">
+      <summary>Gets or sets a value that indicates the reason for the text changing in the AutoSuggestBox.</summary>
+      <returns>The reason for the text changing in the AutoSuggestBox.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.AutoSuggestBoxTextChangedEventArgs.ReasonProperty">
+      <summary>Identifies the Reason dependency property.</summary>
+      <returns>Identifier for the Reason dependency property.</returns>
+    </member>
+    <member name="M:ModernWpf.Controls.AutoSuggestBoxTextChangedEventArgs.CheckCurrent">
+      <summary>Returns a Boolean value indicating if the current value of the TextBox is unchanged from the point in time when the TextChanged event was raised.</summary>
+      <returns>Indicates if the current value of the TextBox is unchanged from the point in time when the TextChanged event was raised.</returns>
+    </member>
+    <member name="T:ModernWpf.Controls.AutoSuggestionBoxTextChangeReason">
+      <summary>Values used to indicate the reason for the text changing in the AutoSuggestBox.</summary>
+    </member>
+    <member name="F:ModernWpf.Controls.AutoSuggestionBoxTextChangeReason.ProgrammaticChange">
+      <summary>The text was changed via code.</summary>
+    </member>
+    <member name="F:ModernWpf.Controls.AutoSuggestionBoxTextChangeReason.SuggestionChosen">
+      <summary>The user selected one of the items in the auto-suggestion box.</summary>
+    </member>
+    <member name="F:ModernWpf.Controls.AutoSuggestionBoxTextChangeReason.UserInput">
+      <summary>The user edited the text.</summary>
     </member>
     <member name="T:ModernWpf.Controls.CommandBar">
       <summary>Represents a specialized app bar that provides layout for AppBarButton and related command elements.</summary>
@@ -557,15 +755,28 @@
     <member name="F:ModernWpf.Controls.ContentDialogResult.Secondary">
       <summary>The secondary button was tapped by the user.</summary>
     </member>
+    <member name="T:ModernWpf.Controls.ContextFlyoutService">
+      <summary>Represents a service that provides static methods to display a context flyout.</summary>
+    </member>
+    <member name="F:ModernWpf.Controls.ContextFlyoutService.ContextFlyoutProperty">
+      <summary>Identifies the ContextFlyoutService.ContextFlyout XAML attached property.</summary>
+      <returns>The identifier for the ContextFlyoutService.ContextFlyout XAML attached property.</returns>
+    </member>
+    <member name="M:ModernWpf.Controls.ContextFlyoutService.GetContextFlyout(System.Windows.FrameworkElement)">
+      <summary>Gets the context flyout associated with this element.</summary>
+      <param name="element">The object from which the property value is read.</param>
+      <returns>The context flyout associated with this element, if any; otherwise, **null**. The default is **null**.</returns>
+    </member>
+    <member name="M:ModernWpf.Controls.ContextFlyoutService.SetContextFlyout(System.Windows.FrameworkElement)">
+      <summary>Sets the context flyout associated with this element.</summary>
+      <param name="element">The object to set context flyout on.</param>
+      <param name="value">The value to set for context flyout.</param>
+    </member>
     <member name="T:ModernWpf.Controls.DropDownButton">
       <summary>Represents a button with a chevron intended to open a menu.</summary>
     </member>
     <member name="M:ModernWpf.Controls.DropDownButton.#ctor">
       <summary>Initializes a new instance of the <see cref="ModernWpf.Controls.DropDownButton?text=DropDownButton" /> class.</summary>
-    </member>
-    <member name="T:ModernWpf.Controls.ElementAnimationCompleted">
-      <param name="sender" />
-      <param name="element" />
     </member>
     <member name="T:ModernWpf.Controls.ElementAnimator">
       <summary>Represents the base class for components that coordinate the animations of elements that are being conceptually added, repositioned/resized, or removed from the live visual tree.</summary>
@@ -893,6 +1104,23 @@
     <member name="M:ModernWpf.Controls.FlyoutPresenter.#ctor">
       <summary>Initializes a new instance of the FlyoutPresenter class.</summary>
     </member>
+    <member name="T:ModernWpf.Controls.FlyoutService">
+      <summary>Represents a service that provides static methods to display a flyout.</summary>
+    </member>
+    <member name="F:ModernWpf.Controls.FlyoutService.FlyoutProperty">
+      <summary>Identifies the FlyoutService.Flyout XAML attached property.</summary>
+      <returns>The identifier for the FlyoutService.Flyout XAML attached property.</returns>
+    </member>
+    <member name="M:ModernWpf.Controls.FlyoutService.GetFlyout(System.Windows.Controls.Button)">
+      <summary>Gets the flyout associated with this button.</summary>
+      <param name="element">The object from which the property value is read.</param>
+      <returns>The flyout associated with this element, if any; otherwise, **null**. The default is **null**.</returns>
+    </member>
+    <member name="M:ModernWpf.Controls.FlyoutService.SetFlyout(System.Windows.Controls.Button)">
+      <summary>Sets the flyout associated with this element.</summary>
+      <param name="element">The object to set flyout on.</param>
+      <param name="value">The value to set for flyout.</param>
+    </member>
     <member name="T:ModernWpf.Controls.HyperlinkButton">
       <summary>Represents a button control that functions as a hyperlink.</summary>
     </member>
@@ -953,6 +1181,21 @@
     <member name="M:ModernWpf.Controls.IScrollAnchorProvider.UnregisterAnchorCandidate(System.Windows.UIElement)">
       <summary>Unregisters a UIElement as a potential scroll anchor candidate.</summary>
       <param name="element">A UIElement within the subtree of the IScrollAnchorProvider.</param>
+    </member>
+    <member name="T:ModernWpf.Controls.ItemClickEventArgs">
+      <summary>Provides event data for the ItemClick event.</summary>
+    </member>
+    <member name="M:ModernWpf.Controls.ItemClickEventArgs.#ctor">
+      <summary>Initializes a new instance of the ItemClickEventArgs class.</summary>
+    </member>
+    <member name="P:ModernWpf.Controls.ItemClickEventArgs.ClickedItem">
+      <summary>Gets a reference to the clicked item.</summary>
+      <returns>The clicked item.</returns>
+    </member>
+    <member name="T:ModernWpf.Controls.ItemClickEventHandler">
+      <summary>Represents the method that will handle an ItemClick event.</summary>
+      <param name="sender">The object where the handler is attached.</param>
+      <param name="e">Event data for the event.</param>
     </member>
     <member name="T:ModernWpf.Controls.ItemsRepeater">
       <summary>Represents a data-driven collection control that incorporates a flexible layout system, custom views, and virtualization.</summary>
@@ -1295,6 +1538,76 @@ Use the ItemsRepeaterScrollHost if your app will run on versions of Windows prio
       <summary>Implements the behavior for getting the return value of <see cref="ModernWpf.Controls.NonVirtualizingLayoutContext.Children?text=Children" /> in a derived or custom NonVirtualizingLayoutContext.</summary>
       <returns>The value that should be returned as <see cref="ModernWpf.Controls.NonVirtualizingLayoutContext.Children?text=Children" /> by the NonVirtualizingLayoutContext.</returns>
     </member>
+    <member name="T:ModernWpf.Controls.PersonPicture">
+      <summary>Represents a control that displays the avatar image for a person, if one is available; if not, it displays the person's initials or a generic glyph.</summary>
+    </member>
+    <member name="M:ModernWpf.Controls.PersonPicture.#ctor">
+      <summary>Initializes a new instance of the PersonPicture class.</summary>
+    </member>
+    <member name="P:ModernWpf.Controls.PersonPicture.BadgeGlyph">
+      <summary>Gets or sets a Segoe MDL2 Assets font glyph to display on the badge.</summary>
+      <returns>The hexadecimal character code for the badge glyph.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.PersonPicture.BadgeGlyphProperty">
+      <summary>Identifies the BadgeGlyph dependency property.</summary>
+      <returns>The identifier for the BadgeGlyph dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.PersonPicture.BadgeImageSource">
+      <summary>Gets or sets the source of an image to display on the badge.</summary>
+      <returns>An object that represents the image source file for the drawn image. Typically you set this with a BitmapImage object, constructed with the Uniform Resource Identifier (URI) that describes the path to a valid image source file. Or, you can initialize a BitmapSource with a stream, perhaps a stream from a storage file.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.PersonPicture.BadgeImageSourceProperty">
+      <summary>Identifies the BadgeImageSource dependency property.</summary>
+      <returns>The identifier for the BadgeImageSource dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.PersonPicture.BadgeNumber">
+      <summary>Gets or sets the contact number to display on the badge.</summary>
+      <returns>The contact number to display on the badge.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.PersonPicture.BadgeNumberProperty">
+      <summary>Identifies the BadgeNumber dependency property.</summary>
+      <returns>The identifier for the BadgeNumber dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.PersonPicture.BadgeText">
+      <summary>Gets or sets the contact text to display on the badge.</summary>
+      <returns>The contact text to display on the badge.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.PersonPicture.BadgeTextProperty">
+      <summary>Identifies the BadgeText dependency property.</summary>
+      <returns>The identifier for the BadgeText dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.PersonPicture.DisplayName">
+      <summary>Gets or sets the contact's display name.</summary>
+      <returns>The contact's display name.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.PersonPicture.DisplayNameProperty">
+      <summary>Identifies the DisplayName dependency property.</summary>
+      <returns>The identifier for the DisplayName dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.PersonPicture.Initials">
+      <summary>Gets or sets the contact's initials.</summary>
+      <returns>The contact's initials.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.PersonPicture.InitialsProperty">
+      <summary>Identifies the Initials dependency property.</summary>
+      <returns>The identifier for the Initials dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.PersonPicture.IsGroup">
+      <summary>Gets or sets a value that indicates whether the PersonPicture represents a group or an individual.</summary>
+      <returns>true if the PersonPicture represents a group; otherwise, false.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.PersonPicture.IsGroupProperty">
+      <summary>Identifies the IsGroup dependency property.</summary>
+      <returns>The identifier for the IsGroup dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.PersonPicture.ProfilePicture">
+      <summary>Gets or sets the source of the contact's profile picture.</summary>
+      <returns>An object that represents the image source file for the drawn image. Typically you set this with a BitmapImage object, constructed with the Uniform Resource Identifier (URI) that describes the path to a valid image source file. Or, you can initialize a BitmapSource with a stream, perhaps a stream from a storage file.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.PersonPicture.ProfilePictureProperty">
+      <summary>Identifies the ProfilePicture dependency property.</summary>
+      <returns>The identifier for the ProfilePicture dependency property.</returns>
+    </member>
     <member name="T:ModernWpf.Controls.ProgressRing">
       <summary>Represents a control that indicates that an operation is ongoing. The typical visual appearance is a ring-shaped "spinner" that cycles an animation as progress continues.</summary>
     </member>
@@ -1383,6 +1696,18 @@ Use the ItemsRepeaterScrollHost if your app will run on versions of Windows prio
     <member name="F:ModernWpf.Controls.Primitives.FlyoutPlacementMode.Top">
       <summary>The preferred location of the flyout is above the target element.</summary>
     </member>
+    <member name="T:ModernWpf.Controls.Primitives.FlyoutShowMode">
+      <summary>Defines constants that specify how a flyout behaves when shown.</summary>
+    </member>
+    <member name="F:ModernWpf.Controls.Primitives.FlyoutShowMode.Auto">
+      <summary>The show mode is determined automatically based on the method used to show the flyout.</summary>
+    </member>
+    <member name="F:ModernWpf.Controls.Primitives.FlyoutShowMode.Standard">
+      <summary>Behavior is typical of a flyout shown reactively, like a context menu. The open flyout takes focus. For a CommandBarFlyout, it opens in it's expanded state.</summary>
+    </member>
+    <member name="F:ModernWpf.Controls.Primitives.FlyoutShowMode.Transient">
+      <summary>Behavior is typical of a flyout shown proactively. The open flyout does not take focus. For a CommandBarFlyout, it opens in it's collapsed state.</summary>
+    </member>
     <member name="T:ModernWpf.Controls.Primitives.ProgressRingTemplateSettings">
       <summary>Provides calculated values that can be referenced as **TemplatedParent** sources when defining templates for a ProgressRing control. Not intended for general use.</summary>
     </member>
@@ -1462,6 +1787,193 @@ Use the ItemsRepeaterScrollHost if your app will run on versions of Windows prio
     <member name="F:ModernWpf.Controls.RadioMenuItem.GroupNameProperty">
       <summary>Identifies the <see cref="ModernWpf.Controls.RadioMenuItem.GroupName?text=GroupName" /> dependency property.</summary>
       <returns>The identifier for the <see cref="ModernWpf.Controls.RadioMenuItem.GroupName?text=GroupName" /> dependency property.</returns>
+    </member>
+    <member name="T:ModernWpf.Controls.RatingControl">
+      <summary>Represents a control that lets a user enter a star rating.</summary>
+    </member>
+    <member name="M:ModernWpf.Controls.RatingControl.#ctor">
+      <summary>Initializes a new instance of the RatingControl class.</summary>
+    </member>
+    <member name="P:ModernWpf.Controls.RatingControl.Caption">
+      <summary>Gets or sets the text label for the control.</summary>
+      <returns>The text label for the control. The default is an empty string.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.RatingControl.CaptionProperty">
+      <summary>Identifies the Caption dependency property.</summary>
+      <returns>The identifier for Caption dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.RatingControl.InitialSetValue">
+      <summary>Gets or sets the initial set rating value.</summary>
+      <returns>The initial set rating value. The default is 1.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.RatingControl.InitialSetValueProperty">
+      <summary>Identifies the InitialSetValue dependency property.</summary>
+      <returns>The identifier for InitialSetValue dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.RatingControl.IsClearEnabled">
+      <summary>Gets or sets the value that determines if the user can remove the rating.</summary>
+      <returns>true if the user can remove the rating; otherwise, false. The default is true.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.RatingControl.IsClearEnabledProperty">
+      <summary>Identifies the IsClearEnabled dependency property.</summary>
+      <returns>The identifier for IsClearEnabled dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.RatingControl.IsReadOnly">
+      <summary>Gets or sets the value that determines if the user can change the rating.</summary>
+      <returns>true if the rating is read-only; otherwise, false. The default is false.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.RatingControl.IsReadOnlyProperty">
+      <summary>Identifies the IsReadOnly dependency property.</summary>
+      <returns>The identifier for IsReadOnly dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.RatingControl.ItemInfo">
+      <summary>Gets or sets info about the visual states of the items that represent a rating.</summary>
+      <returns>A RatingItemInfo-derived object that contains details about the visual states of the items that represent a rating.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.RatingControl.ItemInfoProperty">
+      <summary>Identifies the ItemInfo dependency property.</summary>
+      <returns>The identifier for ItemInfo dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.RatingControl.MaxRating">
+      <summary>Gets or sets the maximum allowed rating value.</summary>
+      <returns>The maximum allowed rating value. The default is 5.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.RatingControl.MaxRatingProperty">
+      <summary>Identifies the MaxRating dependency property.</summary>
+      <returns>The identifier for MaxRating dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.RatingControl.PlaceholderValue">
+      <summary>Gets or sets the rating that is displayed in the control until the value is changed by a user action or some other operation.</summary>
+      <returns>The rating that is displayed in the control when no value is entered. The default is null.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.RatingControl.PlaceholderValueProperty">
+      <summary>Identifies the PlaceholderValue dependency property.</summary>
+      <returns>The identifier for PlaceholderValue dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.RatingControl.Value">
+      <summary>Gets or sets the rating value.</summary>
+      <returns>The rating value. The default is null.</returns>
+    </member>
+    <member name="E:ModernWpf.Controls.RatingControl.ValueChanged">
+      <summary>Occurs when the Value property has changed.</summary>
+    </member>
+    <member name="F:ModernWpf.Controls.RatingControl.ValueProperty">
+      <summary>Identifies the Value dependency property.</summary>
+      <returns>The identifier for Value dependency property.</returns>
+    </member>
+    <member name="T:ModernWpf.Controls.RatingItemFontInfo">
+      <summary>Represents information about the visual states of font elements that represent a rating.</summary>
+    </member>
+    <member name="M:ModernWpf.Controls.RatingItemFontInfo.#ctor">
+      <summary>Initializes a new instance of the RatingItemFontInfo class.</summary>
+    </member>
+    <member name="P:ModernWpf.Controls.RatingItemFontInfo.DisabledGlyph">
+      <summary>Gets or sets a Segoe MDL2 Assets font glyph that represents a rating element that is disabled.</summary>
+      <returns>The hexadecimal character code for the rating element glyph.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.RatingItemFontInfo.DisabledGlyphProperty">
+      <summary>Identifies the DisabledGlyph dependency property.</summary>
+      <returns>The identifier for DisabledGlyph dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.RatingItemFontInfo.Glyph">
+      <summary>Gets or sets a Segoe MDL2 Assets font glyph that represents a rating element that has been set by the user.</summary>
+      <returns>The hexadecimal character code for the rating element glyph.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.RatingItemFontInfo.GlyphProperty">
+      <summary>Identifies the Glyph dependency property.</summary>
+      <returns>The identifier for Glyph dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.RatingItemFontInfo.PlaceholderGlyph">
+      <summary>Gets or sets a Segoe MDL2 Assets font glyph that represents a rating element that is showing a placeholder value.</summary>
+      <returns>The hexadecimal character code for the rating element glyph.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.RatingItemFontInfo.PlaceholderGlyphProperty">
+      <summary>Identifies the PlaceholderGlyph dependency property.</summary>
+      <returns>The identifier for PlaceholderGlyph dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.RatingItemFontInfo.PointerOverGlyph">
+      <summary>Gets or sets a Segoe MDL2 Assets font glyph that represents a rating element that has the pointer over it.</summary>
+      <returns>The hexadecimal character code for the rating element glyph.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.RatingItemFontInfo.PointerOverGlyphProperty">
+      <summary>Identifies the PointerOverGlyph dependency property.</summary>
+      <returns>The identifier for PointerOverGlyph dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.RatingItemFontInfo.PointerOverPlaceholderGlyph">
+      <summary>Gets or sets a Segoe MDL2 Assets font glyph that represents a rating element showing a placeholder value with the pointer over it.</summary>
+      <returns>The hexadecimal character code for the rating element glyph.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.RatingItemFontInfo.PointerOverPlaceholderGlyphProperty">
+      <summary>Identifies the PointerOverPlaceholderGlyph dependency property.</summary>
+      <returns>The identifier for PointerOverPlaceholderGlyph dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.RatingItemFontInfo.UnsetGlyph">
+      <summary>Gets or sets a Segoe MDL2 Assets font glyph that represents a rating element that has not been set.</summary>
+      <returns>The hexadecimal character code for the rating element glyph.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.RatingItemFontInfo.UnsetGlyphProperty">
+      <summary>Identifies the UnsetGlyph dependency property.</summary>
+      <returns>The identifier for UnsetGlyph dependency property.</returns>
+    </member>
+    <member name="T:ModernWpf.Controls.RatingItemImageInfo">
+      <summary>Represents information about the visual states of image elements that represent a rating.</summary>
+    </member>
+    <member name="M:ModernWpf.Controls.RatingItemImageInfo.#ctor">
+      <summary>Initializes a new instance of the RatingItemImageInfo class.</summary>
+    </member>
+    <member name="P:ModernWpf.Controls.RatingItemImageInfo.DisabledImage">
+      <summary>Gets or sets an image that represents a rating element that is disabled.</summary>
+      <returns>An object that represents the image source file for the drawn image. Typically you set this with a BitmapImage object, constructed with the Uniform Resource Identifier (URI) that describes the path to a valid image source file. Or, you can initialize a BitmapSource with a stream, perhaps a stream from a storage file.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.RatingItemImageInfo.DisabledImageProperty">
+      <summary>Identifies the DisabledImage dependency property.</summary>
+      <returns>The identifier for DisabledImage dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.RatingItemImageInfo.Image">
+      <summary>Gets or sets an image that represents a rating element that has been set by the user.</summary>
+      <returns>An object that represents the image source file for the drawn image. Typically you set this with a BitmapImage object, constructed with the Uniform Resource Identifier (URI) that describes the path to a valid image source file. Or, you can initialize a BitmapSource with a stream, perhaps a stream from a storage file.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.RatingItemImageInfo.ImageProperty">
+      <summary>Identifies the Image dependency property.</summary>
+      <returns>The identifier for Image dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.RatingItemImageInfo.PlaceholderImage">
+      <summary>Gets or sets an image that represents a rating element that is showing a placeholder value.</summary>
+      <returns>An object that represents the image source file for the drawn image. Typically you set this with a BitmapImage object, constructed with the Uniform Resource Identifier (URI) that describes the path to a valid image source file. Or, you can initialize a BitmapSource with a stream, perhaps a stream from a storage file.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.RatingItemImageInfo.PlaceholderImageProperty">
+      <summary>Identifies the PlaceholderImage dependency property.</summary>
+      <returns>The identifier for PlaceholderImage dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.RatingItemImageInfo.PointerOverImage">
+      <summary>Gets or sets an image that represents a rating element that has the pointer over it.</summary>
+      <returns>An object that represents the image source file for the drawn image. Typically you set this with a BitmapImage object, constructed with the Uniform Resource Identifier (URI) that describes the path to a valid image source file. Or, you can initialize a BitmapSource with a stream, perhaps a stream from a storage file.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.RatingItemImageInfo.PointerOverImageProperty">
+      <summary>Identifies the PointerOverImage dependency property.</summary>
+      <returns>The identifier for PointerOverImage dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.RatingItemImageInfo.PointerOverPlaceholderImage">
+      <summary>Gets or sets an image that represents a rating element showing a placeholder value with the pointer over it.</summary>
+      <returns>An object that represents the image source file for the drawn image. Typically you set this with a BitmapImage object, constructed with the Uniform Resource Identifier (URI) that describes the path to a valid image source file. Or, you can initialize a BitmapSource with a stream, perhaps a stream from a storage file.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.RatingItemImageInfo.PointerOverPlaceholderImageProperty">
+      <summary>Identifies the PointerOverPlaceholderImage dependency property.</summary>
+      <returns>The identifier for PointerOverPlaceholderImage dependency property.</returns>
+    </member>
+    <member name="P:ModernWpf.Controls.RatingItemImageInfo.UnsetImage">
+      <summary>Gets or sets an image that represents a rating element that has not been set.</summary>
+      <returns>An object that represents the image source file for the drawn image. Typically you set this with a BitmapImage object, constructed with the Uniform Resource Identifier (URI) that describes the path to a valid image source file. Or, you can initialize a BitmapSource with a stream, perhaps a stream from a storage file.</returns>
+    </member>
+    <member name="F:ModernWpf.Controls.RatingItemImageInfo.UnsetImageProperty">
+      <summary>Identifies the UnsetImage dependency property.</summary>
+      <returns>The identifier for UnsetImage dependency property.</returns>
+    </member>
+    <member name="T:ModernWpf.Controls.RatingItemInfo">
+      <summary>Represents information about the visual states of the elements that represent a rating.</summary>
+    </member>
+    <member name="M:ModernWpf.Controls.RatingItemInfo.#ctor">
+      <summary>Initializes a new instance of the RatingItemInfo class.</summary>
     </member>
     <member name="T:ModernWpf.Controls.RecyclePool">
       <summary>Represents a cache of elements that can be re-used to display data items.</summary>

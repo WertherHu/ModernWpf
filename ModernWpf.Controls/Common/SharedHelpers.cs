@@ -9,13 +9,18 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Automation.Peers;
+using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Interop;
+using System.Windows.Media;
 
 namespace ModernWpf.Controls
 {
     internal static class SharedHelpers
     {
+        public static bool IsAnimationsEnabled => SystemParameters.ClientAreaAnimation &&
+                                                  RenderCapability.Tier > 0;
+
         public static bool DoRectsIntersect(
             Rect rect1,
             Rect rect2)
@@ -115,6 +120,11 @@ namespace ModernWpf.Controls
 
         public static string SafeSubstring(this string s, int startIndex)
         {
+            return s.SafeSubstring(startIndex, s.Length - startIndex);
+        }
+
+        public static string SafeSubstring(this string s, int startIndex, int length)
+        {
             if (s is null)
             {
                 throw new ArgumentNullException(nameof(s));
@@ -125,7 +135,27 @@ namespace ModernWpf.Controls
                 return string.Empty;
             }
 
-            return s.Substring(startIndex);
+            if (length > s.Length - startIndex)
+            {
+                length = s.Length - startIndex;
+            }
+
+            return s.Substring(startIndex, length);
+        }
+
+        public static bool IndexOf(this UIElementCollection collection, UIElement element, out int index)
+        {
+            int i = collection.IndexOf(element);
+            if (i >= 0)
+            {
+                index = i;
+                return true;
+            }
+            else
+            {
+                index = 0;
+                return false;
+            }
         }
     }
 }
